@@ -1,0 +1,89 @@
+& when (@media-common = true) {
+  .Candela-blog-posts.item-list {
+    display: flex;
+    flex-wrap: nowrap;
+
+    .blog-item {
+      position: relative;
+      width: ~'calc(100% / 3)';
+    }
+  }
+    .Candela-blog-posts.item-list .blog-item h3.title {
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(28,54,93,.75);
+        text-align: center;
+        margin: 0;
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+
+    .Candela-blog-posts.item-list .blog-item h3.title a {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 35px;
+        display: inline-block;
+        width: 100%;
+        text-align: left;
+        max-width: 85%;
+        margin: auto;
+        padding: 15px 0
+    }
+    .Candela-blog-posts.item-list .blog-item h3.title a {
+        vertical-align: top;
+    }
+}
+
+//Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  body .Candela-blog-posts.item-list {
+    flex-wrap: wrap;
+    width: ~'calc(100% - 20px)';
+    margin: auto;
+
+    .blog-item {
+      margin: 10px 0;
+      width: 100%;
+
+      h2 {
+        margin: 10px 0;
+      }
+
+      .created {
+        margin-top: 10px;
+      }
+    }
+  }
+
+    .Candela-blog-posts.item-list .blog-item h3.title a {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 35px;
+        display: inline-block;
+        width: 100%;
+        text-align: left;
+        max-width: 85%;
+        margin: auto;
+        padding: 15px 0
+    }
+
+    .Candela-blog-posts.item-list .blog-item h3.title a {
+        vertical-align: top;
+    }
+
+    .Candela-blog-posts.item-list .blog-item h3.title {
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(28,54,93,.75);
+        text-align: center;
+        margin: 0;
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <container name="checkout.cart.link" htmlTag="div" htmlClass="checkout-cart-link">
+            <block class="Magento\Cms\Block\Block" name="checkout_cart_link">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">checkout_cart_link</argument>
+                </arguments>
+            </block>
+        </container>
+        <move element="checkout.cart.link" destination="checkout.header.wrapper" after="-"/>
+    </body>
+</page>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Candela Technology, LLC. All rights reserved.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Candela\Acumatica\Api\Data\SubmissionInterface" type="Candela\Acumatica\Model\Submission" />
+    <preference for="Candela\Acumatica\Api\SubmissionRepositoryInterface" type="Candela\Acumatica\Service\SubmissionRepository" />
+    <preference for="Candela\Acumatica\Api\QueueInterface" type="Candela\Acumatica\Service\Queue" />
+    <preference for="Candela\Acumatica\Model\Submission\HandlerInterface" type="Candela\Acumatica\Model\Submission\HandlerPool" />
+    <preference for="Candela\Acumatica\Service\HandlerProcessor\SalesOrder\SalesOrderDataInterface" type="Candela\Acumatica\Service\HandlerProcessor\SalesOrder\Data" />
+    <preference for="Candela\Acumatica\Service\HandlerProcessor\Payment\PaymentDataInterface" type="Candela\Acumatica\Service\HandlerProcessor\Payment\Data" />
+    <preference for="Candela\Acumatica\Service\HandlerProcessor\Customer\CustomerDataInterface" type="Candela\Acumatica\Service\HandlerProcessor\Customer\Data" />
+    <preference for="Candela\Acumatica\Service\HandlerProcessor\Customer\CustomerOrderDataInterface" type="Candela\Acumatica\Service\HandlerProcessor\Customer\OrderData" />
+    <preference for="Candela\Acumatica\Service\HandlerProcessor\CustomerLocation\DataInterface" type="Candela\Acumatica\Service\HandlerProcessor\CustomerLocation\Data" />
+    <preference for="Candela\Acumatica\Service\HandlerProcessor\CustomerLocation\OrderDataInterface" type="Candela\Acumatica\Service\HandlerProcessor\CustomerLocation\OrderData" />
+    <type name="Candela\Acumatica\Model\Submission\HandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="salesOrder" xsi:type="object">\Candela\Acumatica\Model\Submission\Handler\SalesOrder</item>
+                <item name="customer" xsi:type="object">\Candela\Acumatica\Model\Submission\Handler\Customer</item>
+                <item name="customerLocation" xsi:type="object">\Candela\Acumatica\Model\Submission\Handler\CustomerLocation</item>
+                <item name="deleteCustomerLocation" xsi:type="object">\Candela\Acumatica\Model\Submission\Handler\DeleteCustomerLocation</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Candela\Acumatica\Console\Command\SyncCustomers">
+        <arguments>
+            <argument name="name" xsi:type="string">acumatica:customer:sync</argument>
+        </arguments>
+    </type>
+    <type name="Candela\Acumatica\Console\Command\SendPending">
+        <arguments>
+            <argument name="name" xsi:type="string">acumatica:send:pending</argument>
+        </arguments>
+    </type>
+    <type name="Candela\Acumatica\Console\Command\SendFail">
+        <arguments>
+            <argument name="name" xsi:type="string">acumatica:send:fail</argument>
+        </arguments>
+    </type>
+    <type name="Candela\Acumatica\Console\Command\SyncStockItems">
+        <arguments>
+            <argument name="name" xsi:type="string">acumatica:stock:synchronize</argument>
+        </arguments>
+    </type>
+    <type name="Candela\Acumatica\Console\Command\CleanQueue">
+        <arguments>
+            <argument name="name" xsi:type="string">acumatica:queue:clean</argument>
+        </arguments>
+    </type>
+    <type name="Candela\Acumatica\Console\Command\CustomerRemoveAddress">
+        <arguments>
+            <argument name="name" xsi:type="string">acumatica:customer:remove-location</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="acumatica_customer_sync" xsi:type="object">Candela\Acumatica\Console\Command\SyncCustomers</item>
+                <item name="acumatica_send_pending" xsi:type="object">Candela\Acumatica\Console\Command\SendPending</item>
+                <item name="acumatica_send_fail" xsi:type="object">Candela\Acumatica\Console\Command\SendFail</item>
+                <item name="acumatica_stock_synchronize" xsi:type="object">Candela\Acumatica\Console\Command\SyncStockItems</item>
+                <item name="acumatica_stock_clear_queue" xsi:type="object">Candela\Acumatica\Console\Command\CleanQueue</item>
+                <item name="acumatica_customer_remove_location" xsi:type="object">Candela\Acumatica\Console\Command\CustomerRemoveAddress</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="acumatica_submission_listing_data_source" xsi:type="string">Candela\Acumatica\Model\ResourceModel\Submission\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Candela\Acumatica\Model\ResourceModel\Submission\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">acumatica_publish_queue</argument>
+            <argument name="resourceModel" xsi:type="string">Candela\Acumatica\Model\ResourceModel\Submission</argument>
+        </arguments>
+    </type>
+</config>

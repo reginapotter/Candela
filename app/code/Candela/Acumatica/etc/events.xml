@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Candela Technology, LLC. All rights reserved.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_model_service_quote_submit_success">
+        <observer name="Candela_acumatica" instance="Candela\Acumatica\Observer\SalesOrder"/>
+    </event>
+    <event name="customer_address_delete_after">
+        <observer name="Candela_acumatica" instance="Candela\Acumatica\Observer\AddressDelete" />
+    </event>
+    <event name="acumatica_sync_location_before">
+        <observer name="Candela_acumatica_update_customer_before_location" instance="Candela\Acumatica\Observer\UpdateCustomerAcumaticaId" />
+    </event>
+</config>

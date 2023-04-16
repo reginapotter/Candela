@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="candela_blog_posts">
+        <job instance="Candela\WordPressBlogPosts\Cron\FetchBlogPosts"
+             method="execute" name="Candela_blogPosts_fetchBlogPosts">
+            <schedule>0 6 * * *</schedule>
+        </job>
+        <job instance="Candela\WordPressBlogPosts\Cron\ClearOldPosts"
+             method="execute" name="Candela_blogPosts_clearOldPosts">
+            <schedule>0 4 */1 * *</schedule>
+        </job>
+    </group>
+</config>

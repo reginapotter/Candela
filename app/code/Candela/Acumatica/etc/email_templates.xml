@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Candela Technology, LLC. All rights reserved.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="acumatica_failed" label="Acumatica Failed" file="acumatica_failed.html" type="html" module="Candela_Acumatica" area="frontend"/>
+    <template id="acumatica_stockitem_report" label="Acumatica StockItem Update Report" file="acumatica_stockitem_report.html" type="html" module="Candela_Acumatica" area="frontend"/>
+    <template id="acumatica_credentials_failed" label="Acumatica Credentials Failed" file="acumatica_credentials_failed.html" type="html" module="Candela_Acumatica" area="frontend"/>
+</config>

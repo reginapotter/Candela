@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Config -->
+    <preference for="Candela\WordPressBlogPosts\Api\Config\ConfigInterface"
+                type="Candela\WordPressBlogPosts\Service\ConfigService" />
+
+    <!-- Cli -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="CandelaBlogPostsCommand" xsi:type="object">Candela\WordPressBlogPosts\Console\Command\BlogPostsCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Model -->
+    <preference for="Candela\WordPressBlogPosts\Api\BlogPostsRepositoryInterface"
+                type="Candela\WordPressBlogPosts\Model\BlogPostsRepository"/>
+    <preference for="Candela\WordPressBlogPosts\Api\Data\BlogPostsInterface"
+                type="Candela\WordPressBlogPosts\Model\Data\BlogPosts"/>
+    <preference for="Candela\WordPressBlogPosts\Api\Data\BlogPostsSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+</config>

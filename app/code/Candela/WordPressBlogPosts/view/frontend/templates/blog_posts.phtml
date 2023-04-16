@@ -1,0 +1,37 @@
+<?php
+/**
+ * @var $block Candela\WordPressBlogPosts\Block\BlogPosts
+ */
+$isEnabled = $block->isEnabled();
+$blogPosts = $block->getBlogPosts();
+?>
+
+<?php if ($isEnabled && $blogPosts): ?>
+<?php
+?>
+    <div class="Candela-blog-posts item-list">
+        <?php foreach ($blogPosts as $key => $blogPost): ?>
+            <?php
+            if ( $key == 4 ) { break; }
+            $title = (isset($blogPost['yoast_head_json']['title'])) ? $blogPost['yoast_head_json']['title'] : '';
+            $imageUrl = (isset($blogPost['yoast_head_json']['og_image'][0]['url'])) ? $blogPost['yoast_head_json']['og_image'][0]['url'] : '';
+            $postUrl = (isset($blogPost['link'])) ? $blogPost['link'] : '';
+            ?>
+            <div class="blog-item">
+                <div class="thumbnail thumbnail-blog-teaser node node-blog node-sticky node-teaser">
+                    <div class="image-wrapper">
+                        <a href="<?= $block->escapeUrl($postUrl) ?>">
+                            <img class="img-responsive" src="<?= $block->escapeUrl($imageUrl) ?>"
+                                 width="848" height="448" alt="<?= $block->escapeHtml($title) ?>" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="caption">
+                        <h3 class="title">
+                            <a href="<?= $block->escapeUrl($postUrl) ?>"><?= $block->escapeHtml($title) ?></a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

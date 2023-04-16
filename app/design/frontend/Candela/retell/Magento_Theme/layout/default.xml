@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+            <!--Custom JS Scripts-->
+            <block class="Magento\Framework\View\Element\Template" name="custom.js" template="Magento_Theme::custom_js.phtml"/>
+        </referenceContainer>
+
+        <container name="header.right.block" htmlTag="div" htmlClass="header-right-block">
+            <block class="Magento\Cms\Block\Block" name="block_header_right">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">block_header_right</argument>
+                </arguments>
+            </block>
+        </container>
+
+        <move element="currency" destination="customer.extra" after="-" />
+        <move element="minicart" destination="header.panel" after="header.links" />
+        <move element="header.right.block" destination="header.panel" after="-"/>
+        <referenceBlock name="footer_links" remove="true"/>
+
+        <!--  Footer Layout  -->
+        <container name="footer.main.block" htmlTag="div" htmlClass="footer-main-block">
+            <block class="Magento\Cms\Block\Block" name="block_footer_main">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">block_footer_main</argument>
+                </arguments>
+            </block>
+        </container>
+        <container name="footer-store-currency" htmlTag="div" htmlClass="footer-store-currency">
+            <block class="Magento\Directory\Block\Currency" name="footer.currency" template="currency.phtml" />
+        </container>
+        <move element="footer.main.block" destination="footer" />
+        <move element="footer-store-currency" destination="footer.main.block" after="-"/>
+
+        <referenceBlock class="Magento\Theme\Block\Html\Topmenu" template="Magento_Theme::html/topmenu.phtml" name="catalog.topnav" />
+    </body>
+</page>

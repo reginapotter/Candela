@@ -1,0 +1,104 @@
+<!--
+/**
+*
+*/
+-->
+<!-- ko if: getEnabled() -->
+<!-- ko if: getArea() === 'frontend' || getArea() === 'global' -->
+<div class="control-order-attributes-block" id="control-order-attributes-block">
+
+    <!-- ko if: getFirstQuestion() -->
+    <div id="first" name="first">
+        <!-- ko if: getFirstRequired() -->
+        <span class="candela_question_required" id="candela_question_required" role="heading" aria-level="2">
+            <!-- ko text: getFirstQuestion()--><!-- /ko -->
+        </span>
+        <!-- /ko -->
+        <!-- ko ifnot: getFirstRequired() -->
+        <span class="candela_question" id="candela_question" role="heading" aria-level="2">
+             <!-- ko text: getFirstQuestion()--><!-- /ko -->
+        </span>
+        <!-- /ko -->
+        <br><div class="order-attributes-select">
+        <select name="candela_options" id="candela_options"
+                class="input-select candela_options"
+                data-bind="
+                      options: getFirstOptions(),
+                      optionsValue: 'label',
+                      optionsLabel: 'value',
+                      optionsCaption: $t('Please select...'),
+                      value: optionsFirst,
+                      afterRender:afterRender
+                    ">
+        </select>
+        <div class="field-error">
+            <span class="error-message" id="error-message-one" name="error-message-one"></span>
+        </div>
+    </div>
+    </div><br>
+    <!--/ko-->
+    <!-- ko if: getSecondQuestion() -->
+    <div id="second" name="second">
+        <!-- ko if: getSecondRequired() -->
+        <span class="candela_question_required" id="candela_question_two_required" role="heading" aria-level="2">
+            <!-- ko text: getSecondQuestion()--><!-- /ko -->
+        </span>
+        <!-- /ko -->
+        <!-- ko ifnot: getSecondRequired() -->
+        <span class="candela_question" id="candela_question_two" role="heading" aria-level="2">
+             <!-- ko text: getSecondQuestion()--><!-- /ko -->
+        </span>
+        <!-- /ko -->
+        <br>
+        <div class="order-attributes-select">
+            <select name="candela_options_two" id="candela_options_two"
+                    class="input-select candela_options"
+                    data-bind="
+                          options: getSecondOptions(),
+                          optionsValue: 'label',
+                          optionsLabel: 'value',
+                          optionsCaption: $t('Please select...'),
+                          value: optionsSecond,
+                          afterRender:afterRenderSecond
+                    ">
+            </select>
+            <div class="field-error">
+                <span class="error-message" id="error-message-two" name="error-message-two"></span>
+            </div>
+        </div>
+    </div><br>
+    <!--/ko-->
+    <!-- ko if: getThirdQuestion() -->
+    <div id="third" name="third">
+        <!-- ko if: getThirdRequired() -->
+        <span class="candela_question_required" id="candela_question_three_required" role="heading" aria-level="2">
+            <!-- ko text: getThirdQuestion()--><!-- /ko -->
+        </span>
+        <!-- /ko -->
+        <!-- ko ifnot: getThirdRequired() -->
+        <span class="candela_question" id="candela_question_three" role="heading" aria-level="2">
+             <!-- ko text: getThirdQuestion()--><!-- /ko -->
+        </span>
+        <!-- /ko -->
+        <br>
+        <div class="order-attributes-select">
+            <select name="candela_options_three" id="candela_options_three"
+                    class="input-select"
+                    data-bind="
+                          options: getThirdOptions(),
+                          optionsValue: 'label',
+                          optionsLabel: 'value',
+                          optionsCaption: $t('Please select...'),
+                          value: optionsThird,
+                          afterRender:afterRenderThird
+                        ">
+            </select>
+            <div class="field-error">
+                <span class="error-message" id="error-message-three" name="error-message-three"></span>
+            </div>
+        </div><br>
+    </div>
+    <!--/ko-->
+</div>
+<!--/ko-->
+<!--/ko-->

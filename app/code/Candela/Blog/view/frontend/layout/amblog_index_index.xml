@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="amblog_index_font" />
+    <body>
+        <referenceContainer name="page.main.title">
+            <block name="blog.summary.block"
+                   class="Magento\Framework\View\Element\Template"
+                   template="Candela_Blog::summary.phtml"
+                   ifconfig="amblog/list/display_blog_summary">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Candela\Blog\ViewModel\SummaryViewModel</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <referenceContainer name="candela_blog.content.container.list">
+                <block class="Candela\Blog\Block\Content\Lists"
+                       name="amblog.content.list"
+                       as="list"
+                       template="Candela_Blog::list.phtml" />
+            </referenceContainer>
+            <referenceContainer name="candela_blog.content.container.grid">
+                <block class="Candela\Blog\Block\Content\Lists"
+                       name="amblog.content.grid"
+                       as="list"
+                       template="Candela_Blog::grid.phtml" />
+            </referenceContainer>
+            <block class="Candela\Blog\Block\Featured" name="amblog.content.featured" before="-" />
+        </referenceContainer>
+    </body>
+</page>

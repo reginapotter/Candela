@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Candela Technology, LLC. All rights reserved.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <candela_acumatica>
+            <general>
+                <resend_max_time>4</resend_max_time>
+                <currency>MXN</currency>
+                <default_shipping_method>STANDARD SHIPPING</default_shipping_method>
+                <default_payment_method>WIRE</default_payment_method>
+                <retain_max_time>10</retain_max_time>
+            </general>
+            <address_type>
+                <enabled>1</enabled>
+                <default_type>Residential</default_type>
+            </address_type>
+        </candela_acumatica>
+    </default>
+</config>

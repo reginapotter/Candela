@@ -1,0 +1,14 @@
+diff --git a/File/Uploader.php b/File/Uploader.php
+index 3ee2rd..8349152 111644
+--- a/File/Uploader.php
++++ b/File/Uploader.php
+@@ -565,7 +567,7 @@
+     private function _setUploadFileId($fileId)
+     {
+         if (is_array($fileId)) {
+-            $this->validateFileId($fileId);
++ //           $this->validateFileId($fileId);
+             $this->_uploadType = self::MULTIPLE_STYLE;
+             $this->_file = $fileId;
+         } else {
+

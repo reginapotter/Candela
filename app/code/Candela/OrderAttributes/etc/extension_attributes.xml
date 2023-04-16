@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  *
+  */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Checkout\Api\Data\ShippingInformationInterface">
+        <attribute code="candela_question" type="string"/>
+        <attribute code="candela_options" type="string"/>
+        <attribute code="candela_question_two" type="string"/>
+        <attribute code="candela_options_two" type="string"/>
+        <attribute code="candela_question_three" type="string"/>
+        <attribute code="candela_options_three" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Quote\Api\Data\AddressInterface">
+        <attribute code="candela_question" type="string"/>
+        <attribute code="candela_options" type="string"/>
+        <attribute code="candela_question_two" type="string"/>
+        <attribute code="candela_options_two" type="string"/>
+        <attribute code="candela_question_three" type="string"/>
+        <attribute code="candela_options_three" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
+        <attribute code="candela_question" type="string"/>
+        <attribute code="candela_options" type="string"/>
+        <attribute code="candela_question_two" type="string"/>
+        <attribute code="candela_options_two" type="string"/>
+        <attribute code="candela_question_three" type="string"/>
+        <attribute code="candela_options_three" type="string"/>
+    </extension_attributes>
+</config>

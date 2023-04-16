@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Candela\Blog\Block\Amp\AmpLink"
+                   name="amblog.amp.canonical"
+                   ifconfig="amblog/accelerated_mobile_pages/enabled"
+                   template="Candela_Blog::amp/amplink.phtml"
+            />
+        </referenceBlock>
+        <referenceContainer name="header">
+            <block class="Candela\Blog\Block\Content\Lists\Wrapper" name="amblog.content.list.wrapper" as="amblog_content_list_wrapper" />
+        </referenceContainer>
+        <referenceContainer name="page.main.title">
+            <container name="candela_blog.layout.header" before="-"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <container name="candela_blog.layout.content" before="-"/>
+        </referenceContainer>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+    </body>
+</page>

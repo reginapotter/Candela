@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+/**
+*
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="attributes" type="text" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Order Attributes</label>
+            <tab>candela</tab>
+            <resource>Candela_OrderAttributes::order_attributes</resource>
+            <group id="order_attributes" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Dropdown Attributes</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable the module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="area" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Activate On</label>
+                    <source_model>Candela\OrderAttributes\Model\Config\Source\Area</source_model>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="first_question" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>First Question</label>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="first_options" translate="label" type="textarea" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Options for first question</label>
+                    <comment>Separate options with a comma (,) for example: Youtube,Google</comment>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="first_required" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set first question to required</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="second_question" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Second Question</label>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="second_options" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Options for second question</label>
+                    <comment>Separate options with a comma (,) for example: Youtube,Google</comment>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="second_required" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set second question to required</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="third_question" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Third Question</label>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="third_options" translate="label" type="textarea" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Options for third question</label>
+                    <comment>Separate options with a comma (,) for example: Youtube,Google</comment>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="third_required" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set third question to required</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Candela Technology, LLC. All rights reserved.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_address_save_after">
+        <observer name="Candela_acumatica_customer_address_save_after" instance="Candela\Acumatica\Observer\SaveAddress" />
+    </event>
+    <event name="customer_save_after_data_object">
+        <observer name="Candela_acumatica_customer_save_after_data_object" instance="Candela\Acumatica\Observer\CustomerUpdate" />
+    </event>
+</config>

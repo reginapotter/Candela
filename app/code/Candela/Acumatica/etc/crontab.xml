@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Candela Technology, LLC. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="acumatica">
+        <job name="Candela_acumatica_resend_failed" instance="Candela\Acumatica\Cron\ResendFailed" method="execute" >
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="Candela_acumatica_send_pending" instance="Candela\Acumatica\Cron\SendPending" method="execute" >
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="Candela_acumatica_stock_item" instance="Candela\Acumatica\Cron\StockItem" method="execute" >
+            <schedule>0 * * * *</schedule>
+        </job>
+        <job name="Candela_acumatica_shipment" instance="Candela\Acumatica\Cron\Shipment" method="execute" >
+            <schedule>0 0,15 * * *</schedule>
+        </job>
+        <job name="Candela_acumatica_clear_done" instance="Candela\Acumatica\Cron\CleanQueue" method="execute" >
+            <schedule>0 5 * * *</schedule>
+        </job>
+    </group>
+</config>

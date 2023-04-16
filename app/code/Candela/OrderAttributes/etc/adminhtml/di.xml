@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  *
+  */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Block\Adminhtml\Order\Create\Comment">
+        <plugin name="after_order_create_comment" type="Candela\OrderAttributes\Plugin\Sales\Block\Adminhtml\Order\Create\CommentPlugin" sortOrder="10"/>
+    </type>
+    <type name="Magento\Sales\Model\AdminOrder\Create">
+        <plugin name="save_attributes_order_create_admin" type="Candela\OrderAttributes\Plugin\Sales\Model\AdminOrder\CreatePlugin" sortOrder="1"/>
+    </type>
+    <type name="Magento\Sales\Api\CreditmemoRepositoryInterface">
+        <plugin name="save_creditmemo" type="Candela\OrderAttributes\Plugin\Sales\Model\CreditMemo" sortOrder="1"/>
+    </type>
+    <type name="Magento\Sales\Controller\Adminhtml\Order\Creditmemo\Save">
+        <plugin name="candela_order_attributes_after_credit_memo_save"
+                type="Candela\OrderAttributes\Plugin\Controller\Adminhtml\Order\CreditMemo\AfterCreditMemoSave"
+                sortOrder="10"/>
+    </type>
+</config>

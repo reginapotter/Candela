@@ -1,0 +1,50 @@
+<?php
+
+/** @var $block \Candela\OrderAttributes\Block\Review */
+
+if ($block->getEnabled('enable')) :
+    if ($block->getAdminArea()) :  ?>
+    </section>
+    <section id="order-attributesblock" class="admin__page-section order-attributesblock">
+        <div class="admin__page-section-title"><strong class="title"><?= $block->escapeHtml(__('Order Attributes')) ?></strong></div>
+    <?php
+    $questionFields = $block->getQuestionFields();
+    $optionsFields = $block->getOptionsFields();
+    $requiredFields = $block->getRequiredFields();
+        if ($block->isSetConfig()) : ?>
+            <div class="question-fields-section" id="attributes-fields-section"
+                 data-mage-init='{ "Candela_OrderAttributes/js/order-attributes": {"url" : "<?= $block->getUrl('review/index/savefields') ?>"} }'>
+                <?php foreach ($questionFields as $i => $field) : ?>
+                    <?php $question = $block->getQuestion($field); ?>
+                    <?php if ($question) : ?>
+                        <div id="field_div_<?= $i ?>" >
+                            <div class="question-title">
+                                <?php $isRequired = $block->getRequired($requiredFields[$i]); ?>
+                                <?php if ($isRequired) : ?>
+                                    <span class="candela_question_required" id="question_title_<?= $i ?>" name="first_question_title">
+                                <?= $question ?></span>
+                                <?php else : ?>
+                                    <span class="candela_question_non_required" id="question_title_<?= $i ?>" name="first_question_title"><?= $question ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <?php $options = $block->getOptions($optionsFields[$i]) ?>
+                            <?php if ($options) : ?>
+                                <div class="field question" >
+                                    <select name="candela_question_<?= $i ?>" id="candela_options_<?= $i ?>" class="select_question_<?= $i ?> admin__control-select" <?= $isRequired; ?>>
+                                        <option value=""><?= $block->escapeHtml(__('Please select...')); ?></option>
+                                        <?php foreach ($options as $key => $option) : ?>
+                                            <option value="<?= $block->escapeHtml($key) ?>">
+                                                <?= $block->escapeHtml($option) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </section>
+<?php endif; ?>
+<?php endif; ?>

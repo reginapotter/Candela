@@ -1,0 +1,13 @@
+{
+    "Candela_blogposts_blogposts": {
+        "column": {
+            "blogposts_id": true,
+            "is_success": true,
+            "blog_posts": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

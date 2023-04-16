@@ -1,0 +1,34 @@
+<?php
+/**
+ *
+ */
+
+ $creditMemo = $block->getCreditMemo(); ?>
+
+<?php if ($block->escapeHtml($creditMemo->getCandelaQuestion()) ||
+    $block->escapeHtml($creditMemo->getCandelaQuestionTwo()) ||
+    $block->escapeHtml($creditMemo->getCandelaQuestionThree())) : ?>
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Memo Attributes')) ?></span>
+    </div>
+    <table class="admin__table-secondary credit-memo-attributes">
+        <?php if ($block->escapeHtml($creditMemo->getCandelaQuestion())) : ?>
+            <tr>
+                <th><?= $block->escapeHtml($creditMemo->getCandelaQuestion()) ?></th>
+                <td><?= $block->escapeHtml($creditMemo->getCandelaOptions()) ?></td>
+            </tr>
+        <?php endif;?>
+        <?php if ($block->escapeHtml($creditMemo->getCandelaQuestionTwo())) : ?>
+            <tr>
+                <th><?= $block->escapeHtml($creditMemo->getCandelaQuestionTwo()) ?></th>
+                <td><?= $block->escapeHtml($creditMemo->getCandelaOptionsTwo()) ?></td>
+            </tr>
+        <?php endif;?>
+        <?php if ($block->escapeHtml($creditMemo->getCandelaQuestionThree())) : ?>
+            <tr>
+                <th><?= $block->escapeHtml($creditMemo->getCandelaQuestionThree()) ?></th>
+                <td><?= $block->escapeHtml($creditMemo->getCandelaOptionsThree()) ?></td>
+            </tr>
+        <?php endif;?>
+    </table>
+<?php endif;?>

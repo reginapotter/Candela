@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <candela_blog_posts>
+            <general>
+                <is_enabled>1</is_enabled>
+                <production_info_server_url>https://theformulablog.com/</production_info_server_url>
+                <blog_api_path><![CDATA[wp-json/wp/v2/posts]]></blog_api_path>
+            </general>
+        </candela_blog_posts>
+    </default>
+</config>

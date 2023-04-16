@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="amblog_index_font" />
+    <head>
+        <css src="Candela_Base::vendor/slick/amslick.min.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Msrp\Block\Popup" template="Magento_Msrp::popup.phtml" name="product.tooltip">
+                <block class="Magento\Catalog\Block\ShortcutButtons\InCatalog\PositionAfter" name="map.shortcut.buttons"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="head.additional">
+            <block name="amblog.post.og_markup"
+                   class="Magento\Framework\View\Element\Template"
+                   template="Candela_Blog::post/meta_info/og_markup.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Candela\Blog\ViewModel\Posts\Meta\OgMarkup</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="candela.blog.content.post" template="Candela_Blog::post.phtml">
+            <arguments>
+                <argument name="previous_next_navigation" xsi:type="object">
+                    Candela\Blog\ViewModel\Posts\PreviousNextNavigation
+                </argument>
+            </arguments>
+            <block class="Candela\Blog\Block\Social"
+                   name="amblog_social"
+                   as="amblog_social"
+                   template="Candela_Blog::social.phtml"/>
+            <block class="Candela\Blog\Block\Content\Post\Helpful"
+                   name="amblog_helpful"
+                   as="amblog_helpful"/>
+            <block class="Candela\Blog\Block\Content\Post\Related"
+                   name="amblog.post.related"
+                   template="Candela_Blog::post/related.phtml"/>
+            <block class="Candela\Blog\Block\Content\Post\RelatedProducts"
+                   name="amblog.post.related.products"
+                   template="Candela_Blog::post/related_products.phtml"
+                   ifconfig="amblog/posts_products_relation/show_rp_on_post_page">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">
+                        Candela\Blog\ViewModel\Posts\RelatedProducts
+                    </argument>
+                </arguments>
+            </block>
+
+            <block class="Candela\Blog\Block\Comments\Form"
+                   name="amblog.comments.form"
+                   template="Candela_Blog::comments/form.phtml" />
+
+            <block class="Candela\Blog\Block\Comments"
+                   name="amblog.comments.list"
+                   as="amblog.comments.list"
+                   template="Candela_Blog::comments/list.phtml">
+                <block class="Candela\Blog\Block\Comments\Message"
+                       name="amblog_comments_message"
+                       template="Candela_Blog::comments/list/message.phtml" />
+            </block>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  *
+  */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="content">
+            <block name="sales_order_view_order_attributes" template="Candela_OrderAttributes::order/view/order-attributes.phtml">
+                <arguments>
+                    <argument name="order_attributes_view_model" xsi:type="object">Candela\OrderAttributes\ViewModel\Sales\Adminhtml\Order\OrderAttributes</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

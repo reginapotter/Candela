@@ -1,0 +1,9 @@
+<?php
+/**
+ *
+ */
+\Magento\Framework\Component\ComponentRegistrar::register(
+    \Magento\Framework\Component\ComponentRegistrar::MODULE,
+    'Candela_OrderAttributes',
+    __DIR__
+);

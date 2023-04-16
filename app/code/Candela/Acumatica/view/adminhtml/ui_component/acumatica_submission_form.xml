@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Candela Technology, LLC. All rights reserved.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">acumatica_submission_form.submission_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Candela\Acumatica\Block\Adminhtml\Submission\Edit\SaveButton"/>
+            <button name="delete" class="Candela\Acumatica\Block\Adminhtml\Submission\Edit\DeleteButton"/>
+            <button name="back" class="Candela\Acumatica\Block\Adminhtml\Submission\Edit\BackButton"/>
+        </buttons>
+        <namespace>acumatica_submission_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>acumatica_submission_form.submission_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="submission_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="acumatica/submission/save"/>
+        </settings>
+        <dataProvider class="Candela\Acumatica\Model\Submission\DataProvider" name="submission_form_data_source">
+            <settings>
+                <requestFieldName>submission_id</requestFieldName>
+                <primaryFieldName>submission_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="submission_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">submission</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>submission_id</dataScope>
+            </settings>
+        </field>
+        <field name="website_id" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Candela\Acumatica\Model\Config\Source\WebsiteOption</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" translate="true" xsi:type="string">Website</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </field>
+        <field name="event_type" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">submission</item>
+                    <item name="sortOrder" xsi:type="number">200</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Event Type</label>
+                <dataScope>event_type</dataScope>
+            </settings>
+        </field>
+        <field name="input_data" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">submission</item>
+                    <item name="sortOrder" xsi:type="number">300</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Input Data</label>
+                <dataScope>input_data</dataScope>
+            </settings>
+        </field>
+        <field name="counter" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">submission</item>
+                    <item name="sortOrder" xsi:type="number">400</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Counter</label>
+                <dataScope>counter</dataScope>
+            </settings>
+        </field>
+        <field name="creating_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Creating Time</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">submission</item>
+                    <item name="sortOrder" xsi:type="number">500</item>
+                    <item name="dataScope" xsi:type="string">creating_time</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="submission_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Submission Time</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">submission</item>
+                    <item name="sortOrder" xsi:type="number">600</item>
+                    <item name="dataScope" xsi:type="string">submission_time</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="status" sortOrder="700">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Candela\Acumatica\Model\Config\Source\StatusOption</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" translate="true" xsi:type="string">Status</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </field>
+        <field name="error_message" sortOrder="800" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">consultant</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>textarea</dataType>
+                <label translate="true">Error Message</label>
+                <dataScope>error_message</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

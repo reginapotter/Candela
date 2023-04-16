@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<!--
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Candela\Blog\Api\Data\ViewInterface" type="Candela\Blog\Model\View" />
+    <preference for="Candela\Blog\Api\ViewRepositoryInterface" type="Candela\Blog\Model\Repository\ViewRepository" />
+    <preference for="Candela\Blog\Api\Data\TagInterface" type="Candela\Blog\Model\Tag" />
+    <preference for="Candela\Blog\Api\Data\AuthorInterface" type="Candela\Blog\Model\Author" />
+    <preference for="Candela\Blog\Api\TagRepositoryInterface" type="Candela\Blog\Model\Repository\TagRepository" />
+    <preference for="Candela\Blog\Api\AuthorRepositoryInterface" type="Candela\Blog\Model\Repository\AuthorRepository" />
+    <preference for="Candela\Blog\Api\Data\PostInterface" type="Candela\Blog\Model\Posts" />
+    <preference for="Candela\Blog\Api\PostRepositoryInterface" type="Candela\Blog\Model\Repository\PostRepository" />
+    <preference for="Candela\Blog\Api\Data\CategoryInterface" type="Candela\Blog\Model\Categories" />
+    <preference for="Candela\Blog\Api\CategoryRepositoryInterface" type="Candela\Blog\Model\Repository\CategoriesRepository" />
+    <preference for="Candela\Blog\Api\Data\CommentInterface" type="Candela\Blog\Model\Comments" />
+    <preference for="Candela\Blog\Api\CommentRepositoryInterface" type="Candela\Blog\Model\Repository\CommentRepository" />
+    <preference for="Candela\Blog\Api\VoteRepositoryInterface" type="Candela\Blog\Model\Repository\VoteRepository" />
+    <preference for="Candela\Blog\Api\Data\GetPostRelatedProductsInterface" type="Candela\Blog\Model\ResourceModel\Posts\RelatedProducts\GetPostRelatedProducts" />
+    <preference for="Candela\Blog\Api\Data\GetRelatedPostsForProductInterface" type="Candela\Blog\Model\ResourceModel\Posts\RelatedProducts\GetRelatedPostsForProduct" />
+    <preference for="Candela\Blog\Model\Layout\GeneratorInterface" type="Candela\Blog\Model\Layout\Generator" />
+    <preference for="Candela\Blog\Model\Layout\BlockNameGeneratorInterface" type="Candela\Blog\Model\Layout\GenerateNameByClassName" />
+
+    <type name="Candela\Blog\Model\Config\Backend\Route">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlHelper" xsi:type="object">Candela\Blog\Helper\Url</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Blog\Model\Posts">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="url_helper" xsi:type="object">Candela\Blog\Helper\Url</item>
+                <item name="image_helper" xsi:type="object">Candela\Blog\Helper\Image</item>
+                <item name="setting_helper" xsi:type="object">Candela\Blog\Helper\Settings</item>
+                <item name="filter_provider" xsi:type="object">Magento\Cms\Model\Template\FilterProvider</item>
+                <item name="view_repository" xsi:type="object">Candela\Blog\Api\ViewRepositoryInterface</item>
+                <item name="author_repository" xsi:type="object">Candela\Blog\Api\AuthorRepositoryInterface</item>
+                <item name="store_manager" xsi:type="object">Magento\Store\Model\StoreManagerInterface</item>
+                <item name="config_provider" xsi:type="object">Candela\Blog\Model\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Blog\Model\Comments">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="url_resolver" xsi:type="object">Candela\Blog\Model\UrlResolver</item>
+                <item name="post_repository" xsi:type="object">Candela\Blog\Api\PostRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Blog\Model\AbstractModel">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="category_repository" xsi:type="object">Candela\Blog\Api\CategoryRepositoryInterface</item>
+                <item name="categories_collection_factory" xsi:type="object">Candela\Blog\Model\ResourceModel\Categories\CollectionFactory</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="tagged_posts_listing_data_source" xsi:type="string">Candela\Blog\Model\ResourceModel\Posts\Collection\Grid</item>
+                <item name="category_posts_listing_data_source" xsi:type="string">Candela\Blog\Model\ResourceModel\Posts\Collection\Grid</item>
+                <item name="author_posts_listing_data_source" xsi:type="string">Candela\Blog\Model\ResourceModel\Posts\Collection\Grid</item>
+                <item name="comments_listing_data_source" xsi:type="string">Candela\Blog\Model\ResourceModel\Comments\Collection\Grid</item>
+                <item name="authors_listing_data_source" xsi:type="string">Candela\Blog\Model\ResourceModel\Author\Collection\Grid</item>
+                <item name="tags_listing_data_source" xsi:type="string">Candela\Blog\Model\ResourceModel\Tag\Collection\Grid</item>
+                <item name="categories_listing_data_source" xsi:type="string">Candela\Blog\Model\ResourceModel\Categories\Collection\Grid</item>
+                <item name="posts_listing_data_source" xsi:type="string">Candela\Blog\Model\ResourceModel\Posts\Collection\Grid</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Candela\Blog\Model\ImageUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">Candela\Blog\Model\ImageProcessor::BLOG_MEDIA_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">Candela\Blog\Model\ImageProcessor::BLOG_MEDIA_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Candela\Blog\Model\Blog\Config\Reader" type="Magento\Framework\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="converter" xsi:type="object">Candela\Blog\Model\Blog\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">Candela\Blog\Model\Blog\Config\SchemaLocator</argument>
+            <argument name="fileName" xsi:type="string">blog.xml</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Candela\Blog\Model\Blog\Config" type="Magento\Framework\Config\Data">
+        <arguments>
+            <argument name="reader" xsi:type="object">Candela\Blog\Model\Blog\Config\Reader</argument>
+            <argument name="cacheId" xsi:type="string">amblog_blog</argument>
+        </arguments>
+    </virtualType>
+    <type name="Candela\Blog\Helper\Config">
+        <arguments>
+            <argument name="blogConfig" xsi:type="object">Candela\Blog\Model\Blog\Config</argument>
+        </arguments>
+    </type>
+    <type name="Candela\Blog\Controller\Adminhtml\Uploader\PostImage">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Candela\Blog\Model\ImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Candela\Blog\Controller\Adminhtml\Uploader\AuthorImage">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Candela\Blog\Model\ImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Candela\Blog\Model\ImageProcessor">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Candela\Blog\Model\ImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Candela\Xsearch\Block\Search\Blog">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="collectionFactory" xsi:type="object">Magento\Framework\Data\CollectionFactory</item>
+                <item name="categoriesCollectionFactory" xsi:type="object">Candela\Blog\Model\ResourceModel\Categories\CollectionFactory</item>
+                <item name="tagsCollectionFactory" xsi:type="object">Candela\Blog\Model\ResourceModel\Tag\CollectionFactory</item>
+                <item name="postsCollectionFactory" xsi:type="object">Candela\Blog\Model\ResourceModel\Posts\CollectionFactory</item>
+                <item name="dataObjectFactory" xsi:type="object">Magento\Framework\DataObjectFactory</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Blog\Block\Content\Search">
+        <arguments>
+            <argument name="collectionFactories" xsi:type="array">
+                <item name="posts" xsi:type="object" sortOrder="0">Candela\Blog\Model\ResourceModel\Posts\CollectionFactory</item>
+                <item name="authors" xsi:type="object" sortOrder="10">Candela\Blog\Model\ResourceModel\Author\CollectionFactory</item>
+                <item name="categories" xsi:type="object" sortOrder="20">Candela\Blog\Model\ResourceModel\Categories\CollectionFactory</item>
+                <item name="tags" xsi:type="object" sortOrder="30">Candela\Blog\Model\ResourceModel\Tag\CollectionFactory</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Gdpr\Model\Source\CheckboxLocationCombine">
+        <arguments>
+            <argument name="optionGroups" xsi:type="array">
+                <item name="candela" xsi:type="array">
+                    <item name="optionSources" xsi:type="array">
+                        <item name="blog" xsi:type="object">Candela\Blog\Model\Config\GdprBlog</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Gdpr\ViewModel\Adminhtml\System\Config\GdprCommentViewModel">
+        <arguments>
+            <argument name="sectionComments" xsi:type="array">
+                <item name="amblog" xsi:type="array">
+                    <item name="selector" xsi:type="string">#row_amblog_comments_gdpr</item>
+                    <item name="comment" xsi:type="string" translatable="true"><![CDATA[Please disable the setting if you use consent checkboxes configured for Blog Pro form via <a href='%1'>GDPR Consent Checkboxes.</a>]]></item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Store\ViewModel\SwitcherUrlProvider">
+        <plugin
+            name="Candela_Blog::switch_blog_entity_url_when_store_was_switched"
+            type="Candela\Blog\Plugin\Store\ViewModel\SwitcherUrlProvider\ReplaceStoreSwitcherUrlForBlogEntities"
+        />
+    </type>
+
+    <!--Add possibility for apply patches before DS start-->
+    <virtualType name="Magento\Framework\Setup\Patch\DeclarativeSchemaApplyBeforeReader" type="Magento\Framework\Setup\Patch\PatchReader">
+        <arguments>
+            <argument name="type" xsi:type="string">declarativeSchemaApplyBefore</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Candela\Blog\Setup\Patch\PatchApplier" type="Magento\Framework\Setup\Patch\PatchApplier">
+        <arguments>
+            <argument name="dataPatchReader" xsi:type="object">Magento\Framework\Setup\Patch\DeclarativeSchemaApplyBeforeReader</argument>
+            <argument name="schemaPatchReader" xsi:type="object">Magento\Framework\Setup\Patch\DeclarativeSchemaApplyBeforeReader</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Candela\Blog\Plugin\Setup\Model\DeclarationInstaller\ApplyPatchesBeforeDeclarativeSchema">
+        <arguments>
+            <argument name="patchApplier" xsi:type="object">Candela\Blog\Setup\Patch\PatchApplier</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Setup\Model\DeclarationInstaller">
+        <plugin name="Candela_Blog::execute-patches-before-schema-apply"
+                type="Candela\Blog\Plugin\Setup\Model\DeclarationInstaller\ApplyPatchesBeforeDeclarativeSchema"/>
+    </type>
+    <!--Add possibility for apply patches before DS end-->
+
+    <type name="Candela\Blog\Model\ResourceModel\Posts\Save\SavePartProcessorsPool">
+        <arguments>
+            <argument name="savePartQueue" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="processor" xsi:type="object">Candela\Blog\Model\ResourceModel\Posts\Save\SavePostProductRelations</item>
+                    <item name="sortOrder" xsi:type="string">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Blog\Plugin\Store\ViewModel\SwitcherUrlProvider\ReplaceStoreSwitcherUrlForBlogEntities">
+        <arguments>
+            <argument name="categoryRepository" xsi:type="object">Candela\Blog\Api\CategoryRepositoryInterface\Proxy</argument>
+            <argument name="tagRepository" xsi:type="object">Candela\Blog\Api\TagRepositoryInterface\Proxy</argument>
+            <argument name="authorRepository" xsi:type="object">Candela\Blog\Api\AuthorRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Blog\Model\Layout\ConfigFactory">
+        <arguments>
+            <argument name="blockAliasesMap" xsi:type="array">
+                <item name="list" xsi:type="array">
+                    <item name="containerType" xsi:type="const">Candela\Blog\Model\Layout\BlockConfig::TYPE_CONTAINER</item>
+                    <item name="layoutName" xsi:type="string">candela_blog.content.container.list</item>
+                    <item name="isNeedWrap" xsi:type="boolean">false</item>
+                </item>
+                <item name="categories" xsi:type="string">Candela\Blog\Block\Sidebar\Category</item>
+                <item name="search" xsi:type="string">Candela\Blog\Block\Sidebar\Search</item>
+                <item name="recent-posts" xsi:type="string">Candela\Blog\Block\Sidebar\Recentpost</item>
+                <item name="subscribe-to-newsletter" xsi:type="string">Candela\Blog\Block\Newsletter\Subscribe</item>
+                <item name="author" xsi:type="string">Candela\Blog\Block\Layout\AuthorInfo</item>
+                <item name="recent-comments" xsi:type="string">Candela\Blog\Block\Sidebar\Recentcomments</item>
+                <item name="tags" xsi:type="string">Candela\Blog\Block\Tags</item>
+                <item name="author_about" xsi:type="array">
+                    <item name="className" xsi:type="string">Candela\Blog\Block\Layout\AuthorInfo</item>
+                    <item name="template" xsi:type="string">Candela_Blog::sidebar/author_info.phtml</item>
+                </item>
+                <item name="grid" xsi:type="array">
+                    <item name="containerType" xsi:type="const">Candela\Blog\Model\Layout\BlockConfig::TYPE_CONTAINER</item>
+                    <item name="layoutName" xsi:type="string">candela_blog.content.container.grid</item>
+                    <item name="isNeedWrap" xsi:type="boolean">false</item>
+                </item>
+                <item name="post" xsi:type="array">
+                    <item name="className" xsi:type="string">Candela\Blog\Block\Content\Post</item>
+                    <item name="template" xsi:type="string">Candela_Blog::post.phtml</item>
+                    <item name="layoutName" xsi:type="string">candela.blog.content.post</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Blog\Model\Layout\Config\PageTypeRelatedModifier">
+        <arguments>
+            <argument name="additionalBlocksModifiers" xsi:type="array">
+                <item name="amblog_index_author" xsi:type="object">Candela\Blog\Model\Layout\Config\Modifiers\AuthorPage</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Blog\Model\Layout\CacheableGenerator">
+        <arguments>
+            <argument name="cache" xsi:type="object">Candela\Blog\Model\Cache\Type\Blog</argument>
+        </arguments>
+    </type>
+
+    <type name="Candela\Blog\Model\Config\Backend\LayoutConfig">
+        <arguments>
+            <argument name="cache" xsi:type="object">Candela\Blog\Model\Cache\Type\Blog</argument>
+        </arguments>
+    </type>
+
+    <!-- XmlSitemap Sources -->
+    <virtualType name="Candela\Blog\Model\XmlSitemap\Source\BlogAuthor" type="Candela\Blog\Model\XmlSitemap\Source\BlogEntitySource">
+        <arguments>
+            <argument name="entityCode" xsi:type="string">candela_blog_author</argument>
+            <argument name="entityLabel" xsi:type="string">Candela Blog Authors</argument>
+            <argument name="collectionProvider" xsi:type="object">Candela\Blog\Model\XmlSitemap\Source\CollectionProvider\Author</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Candela\Blog\Model\XmlSitemap\Source\BlogPost" type="Candela\Blog\Model\XmlSitemap\Source\BlogEntitySource">
+        <arguments>
+            <argument name="entityCode" xsi:type="string">candela_blog_post</argument>
+            <argument name="entityLabel" xsi:type="string">Candela Blog Posts</argument>
+            <argument name="collectionProvider" xsi:type="object">Candela\Blog\Model\XmlSitemap\Source\CollectionProvider\Post</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Candela\Blog\Model\XmlSitemap\Source\BlogCategory" type="Candela\Blog\Model\XmlSitemap\Source\BlogEntitySource">
+        <arguments>
+            <argument name="entityCode" xsi:type="string">candela_blog_category</argument>
+            <argument name="entityLabel" xsi:type="string">Candela Blog Categories</argument>
+            <argument name="collectionProvider" xsi:type="object">Candela\Blog\Model\XmlSitemap\Source\CollectionProvider\Category</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Candela\Blog\Model\XmlSitemap\Source\BlogTag" type="Candela\Blog\Model\XmlSitemap\Source\BlogEntitySource">
+        <arguments>
+            <argument name="entityCode" xsi:type="string">candela_blog_tag</argument>
+            <argument name="entityLabel" xsi:type="string">Candela Blog Tags</argument>
+            <argument name="collectionProvider" xsi:type="object">Candela\Blog\Model\XmlSitemap\Source\CollectionProvider\Tag</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Candela\XmlSitemap\Model\Sitemap\SourceProvider">
+        <arguments>
+            <argument name="sources" xsi:type="array">
+                <item name="candela_blog_post" xsi:type="string">Candela\Blog\Model\XmlSitemap\Source\BlogPost</item>
+                <item name="candela_blog_tag" xsi:type="string">Candela\Blog\Model\XmlSitemap\Source\BlogTag</item>
+                <item name="candela_blog_author" xsi:type="string">Candela\Blog\Model\XmlSitemap\Source\BlogAuthor</item>
+                <item name="candela_blog_category" xsi:type="string">Candela\Blog\Model\XmlSitemap\Source\BlogCategory</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- XmlSitemap Sources End -->
+</config>

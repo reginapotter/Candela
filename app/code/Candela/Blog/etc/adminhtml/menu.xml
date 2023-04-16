@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Candela_Blog::maintext"
+             title="Candela Blog Pro"
+             module="Candela_Blog"
+             sortOrder="110"
+             parent="Magento_Backend::content"
+             resource="Candela_Blog::maintext"/>
+
+        <add id="Candela_Blog::posts"
+             title="Posts"
+             module="Candela_Blog"
+             sortOrder="110"
+             parent="Candela_Blog::maintext"
+             action="candela_blog/posts"
+             resource="Candela_Blog::posts"/>
+
+        <add id="Candela_Blog::categories"
+             title="Categories"
+             module="Candela_Blog"
+             sortOrder="120"
+             parent="Candela_Blog::maintext"
+             action="candela_blog/categories"
+             resource="Candela_Blog::categories"/>
+        <add id="Candela_Blog::authors"
+             title="Authors"
+             module="Candela_Blog"
+             sortOrder="130"
+             parent="Candela_Blog::maintext"
+             action="candela_blog/authors"
+             resource="Candela_Blog::authors"/>
+        <add id="Candela_Blog::tags"
+             title="Tags"
+             module="Candela_Blog"
+             sortOrder="140"
+             parent="Candela_Blog::maintext"
+             action="candela_blog/tags"
+             resource="Candela_Blog::tags"/>
+        <add id="Candela_Blog::comments"
+             title="Comments"
+             module="Candela_Blog"
+             sortOrder="150"
+             parent="Candela_Blog::maintext"
+             action="candela_blog/comments"
+             resource="Candela_Blog::comments"/>
+    </menu>
+</config>

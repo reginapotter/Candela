@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Candela Technology, LLC. All rights reserved.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">acumatica_submission_listing.acumatica_submission_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>grid_record_columns</spinner>
+        <deps>
+            <dep>acumatica_submission_listing.acumatica_submission_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="acumatica_submission_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">submission_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Candela\Acumatica\Ui\Component\Listing\DataProvider" name="acumatica_submission_listing_data_source">
+            <settings>
+                <requestFieldName>submission_id</requestFieldName>
+                <primaryFieldName>submission_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>false</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <columns name="grid_record_columns">
+        <column name="submission_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="website_id" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Candela\Acumatica\Model\Config\Source\WebsiteOption"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Website</label>
+            </settings>
+        </column>
+        <column name="event_type" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Candela\Acumatica\Model\Config\Source\EventType"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Event Type</label>
+            </settings>
+        </column>
+        <column name="input_data" class="Candela\Acumatica\Ui\Component\Listing\Column\Target" >
+            <settings>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Sync Item</label>
+            </settings>
+        </column>
+        <column name="counter">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Attempt(s)</label>
+            </settings>
+        </column>
+        <column name="creating_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Creating Time</label>
+            </settings>
+        </column>
+        <column name="submission_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Submission Time</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <bodyTmpl>Candela_Acumatica/ui/grid/cells/status</bodyTmpl>
+                <options class="Candela\Acumatica\Model\Config\Source\StatusOption"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="error_message" class="Candela\Acumatica\Ui\Component\Listing\Column\ErrorLog">
+            <settings>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Error Message</label>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions" class="Candela\Acumatica\Ui\Component\Listing\Column\SubmissionActions">
+            <settings>
+                <indexField>submission_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

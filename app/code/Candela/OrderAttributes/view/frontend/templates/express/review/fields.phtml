@@ -1,0 +1,62 @@
+<?php
+/**
+ *
+ */
+
+/** @var $block \Candela\OrderAttributes\Block\Review */
+
+if ($block->getEnabled('enable')) :
+    if ($block->getFrontendArea()) :
+        if ($block->isSetConfig()):
+            $questionFields = $block->getQuestionFields();
+            $optionsFields = $block->getOptionsFields();
+            $requiredFields = $block->getRequiredFields();
+?>
+        <script type="text/x-magento-init">
+        {
+            "#question-fields-form": {
+                    "Candela_OrderAttributes/js/question-review": {
+
+                }
+            }
+        }
+        </script>
+        <div class="question-fields-section">
+            <form method="post"
+                  action="<?php echo $block->getUrl('review/index/savefields');  ?>"
+                  id="question-fields-form"
+                  class="form question-fields-form">
+
+                <?php foreach ($questionFields as $i => $field) : ?>
+
+                    <?php if ($block->getQuestion($field)) : ?>
+                        <div id="field_div_<?= $i ?>" class="field-candela-div-options">
+                            <div class="question-title">
+                                <?php if ($block->getRequired($requiredFields[$i])) : ?>
+                                    <span class="candela_question_required" id="question_title_<?= $i ?>" name="first_question_title">
+                                    <?= $block->getQuestion($field) ?></span>
+                                <?php else : ?>
+                                    <span class="action-default" id="question_title_<?= $i ?>" name="first_question_title"><?= $block->getQuestion($field) ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <?php if ($block->getOptions($optionsFields[$i])) : ?>
+                                <div class="field question" >
+                                    <select name="candela_question" id="candela_options_<?= $i ?>" class="select_question_<?= $i ?>" <?= $block->getRequired($requiredFields[$i]) ?>>
+                                        <option value=""><?= $block->escapeHtml(__('Please select...')); ?></option>
+                                        <?php foreach ($block->getOptions($optionsFields[$i]) as $key => $option) : ?>
+                                            <option value="<?= $block->escapeHtml($key) ?>">
+                                                <?= $block->escapeHtml($option) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <span class="required-error-container" id="error_message_<?= $i ?>" name="error_message"></span>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </form><br>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Swarming Technology, LLC. All rights reserved.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="candela" translate="label" sortOrder="500">
+            <label>Candela</label>
+        </tab>
+        <section id="candela_acumatica" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Acumatica</label>
+            <tab>candela</tab>
+            <resource>Candela_Acumatica::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="currency" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Currency</label>
+                    <frontend_model>Magento\Directory\Block\Adminhtml\Frontend\Currency\Base</frontend_model>
+                    <source_model>Magento\Config\Model\Config\Source\Locale\Currency</source_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Currency\Base</backend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="enable_logging" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Logging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="resend_enable" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Resend Failed Submissions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="failed_notification_email" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>Failed Notification Email</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="resend_max_time" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>Max time to resend failed submissions</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="retain_max_time" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>Max Days to Retain Completed Submissions</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="failed_authenticate_notification_email" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>Failed Authenticate Notification Email</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="shipping_method_mapping" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>Mapping Magento Shipping Methods to Acumatica ShipVia options</label>
+                    <comment>Comma separated list, vertical line "|" separates Magento Shipping method from Acumatica ShipVia option in the format {magento_shipping_method}|{ShipVia option}, e.g. "Free Shipping - Free|FREE SHIPPING, Flat Rate - Fixed|STANDARD SHIPPING"</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="default_shipping_method" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>Default Acumatica ShipVia value</label>
+                    <comment>e.g. STANDARD SHIPPING</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="payment_method_mapping" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>Mapping Magento Payment Methods to Acumatica ShipVia options</label>
+                    <comment>Comma separated list, vertical line "|" separates Magento Payment method from Acumatica Payment Method option in the format {magento_payment_method}|{Acumatica Payment Method option}, e.g. "MC|MC VISA, VI|MC VISA"</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="default_payment_method" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>Default Acumatica Payment Method value</label>
+                    <comment>e.g. WIRE</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="address_type" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Address Type</label>
+                <field id="enabled" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <comment>Candela Address Type extension should be installed.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_type" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1" canRestore="1">
+                    <label>Default Address Type</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="credentials" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Credentials</label>
+                <field id="api_auth_name" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Auth Name</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_auth_password" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Auth Password</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_auth_company" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Auth Company</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="endpoint" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Endpoints</label>
+                <field id="login" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Endpoint Login</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="logout" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Endpoint Logout</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="customer" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Endpoint Customer</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sales_order" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Endpoint Sales Order</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sales_order_payment" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Endpoint Sales Order apply Payment</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="payment" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Endpoint Payment</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="customer_location" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Endpoint CustomerLocation</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="stock_item" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Endpoint StockItem</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="shipment" translate="label" type="text" showInWebsite="1" showInStore="0" showInDefault="1">
+                    <label>API Endpoint Shipment</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="stock_item_cron" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>StockItem Cron Settings</label>
+                <field id="stock_item_enable" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable StockItem Sync</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="custom_schedule" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Custom Schedule</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                        <field id="stock_item_enable">1</field>
+                    </depends>
+                </field>
+                <field id="schedule" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Schedule</label>
+                    <comment>Enter if you know what you are doing. The value is not validated.</comment>
+                    <backend_model>Candela\Acumatica\Model\Config\System\Backend\CronResend</backend_model>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                        <field id="custom_schedule">1</field>
+                        <field id="stock_item_enable">1</field>
+                    </depends>
+                </field>
+                <field id="start_time" translate="label" type="time" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Start Time</label>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                        <field id="custom_schedule">0</field>
+                        <field id="stock_item_enable">1</field>
+                    </depends>
+                </field>
+                <field id="frequency" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Frequency</label>
+                    <source_model>Candela\Acumatica\Model\Config\Source\CronFrequency</source_model>
+                    <backend_model>Candela\Acumatica\Model\Config\System\Backend\CronResend</backend_model>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                        <field id="custom_schedule">0</field>
+                        <field id="stock_item_enable">1</field>
+                    </depends>
+                </field>
+                <field id="stock_update_report_email" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>StockItem Update Report Email</label>
+                    <comment>Emails (separated by comma) for the StockItem Update Report</comment>
+                    <depends>
+                        <field id="candela_acumatica/general/enabled">1</field>
+                        <field id="stock_item_enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="customer_group" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customer Groups</label>
+                <field id="choose_customer_group" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map Customer Groups to Acumatica Classes</label>
+                    <frontend_model>Candela\Acumatica\Model\FrontendModel\Group</frontend_model>
+                    <backend_model>Candela\Acumatica\Model\BackendModel\Group</backend_model>
+                    <comment>Add the Magento customer group and it's corresponding class in Acumatica</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

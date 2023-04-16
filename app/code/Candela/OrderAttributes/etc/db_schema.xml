@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  *
+  */
+ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order" resource="default" engine="innodb">
+        <column xsi:type="varchar" name="candela_question" nullable="true" length="100" comment="Question"/>
+        <column xsi:type="varchar" name="candela_options" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_question_two" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_options_two" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_question_three" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_options_three" nullable="true" length="100" comment="Options"/>
+    </table>
+    <table name="quote" resource="default" engine="innodb">
+        <column xsi:type="varchar" name="candela_question" nullable="true" length="100" comment="Question"/>
+        <column xsi:type="varchar" name="candela_options" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_question_two" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_options_two" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_question_three" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_options_three" nullable="true" length="100" comment="Options"/>
+    </table>
+    <table name="sales_invoice" resource="default" engine="innodb">
+        <column xsi:type="varchar" name="candela_question" nullable="true" length="100" comment="Question"/>
+        <column xsi:type="varchar" name="candela_options" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_question_two" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_options_two" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_question_three" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_options_three" nullable="true" length="100" comment="Options"/>
+    </table>
+    <table name="sales_creditmemo" resource="default" engine="innodb">
+        <column xsi:type="varchar" name="candela_question" nullable="true" length="100" comment="Question"/>
+        <column xsi:type="varchar" name="candela_options" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_question_two" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_options_two" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_question_three" nullable="true" length="100" comment="Options"/>
+        <column xsi:type="varchar" name="candela_options_three" nullable="true" length="100" comment="Options"/>
+    </table>
+</schema>

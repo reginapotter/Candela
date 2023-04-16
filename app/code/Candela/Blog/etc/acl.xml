@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::content">
+                    <resource id="Candela_Blog::maintext" title="Candela Blog" />
+                    <resource id="Candela_Blog::authors" title="Candela Blog Authors Page" />
+                    <resource id="Candela_Blog::tags" title="Candela Blog Tags Page" />
+                    <resource id="Candela_Blog::posts" title="Candela Blog Posts Page" />
+                    <resource id="Candela_Blog::comments" title="Candela Blog Comments Page" />
+                    <resource id="Candela_Blog::categories" title="Candela Blog Categories Page" />
+                    <resource id="Candela_Blog::import" title="Candela Blog Import" />
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Candela_Blog::config" title="Candela Blog Settings" sortOrder="21215" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

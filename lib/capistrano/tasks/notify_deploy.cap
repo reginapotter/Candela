@@ -1,0 +1,9 @@
+namespace :shero do
+    desc 'Notify the deployment tracker of release'
+    task :notify do
+        on roles :all do
+            execute "curl --location -s --request POST 'https://api.shero.dev/api/deployments?project_id=#{fetch(:application)}&project_env=#{fetch(:stage)}'"
+        end
+    end
+end
+after :deploy, "shero:notify"

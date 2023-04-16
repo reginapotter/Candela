@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Candela\Blog\ViewModel\Category\Description $viewModel
+ * @var \Candela\Blog\ViewModel\ContentPreparation\CompositePreparator $contentPreparation
+ */
+
+$viewModel = $block->getViewModel();
+$contentPreparation = $block->getContentPreparation();
+$description = $contentPreparation->prepare($viewModel->getCategoryDescription());
+?>
+
+<?php if ($description): ?>
+    <div class="amblog-category-description">
+        <?= /* @noEscape */ $description ?>
+    </div>
+<?php endif; ?>

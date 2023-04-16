@@ -1,0 +1,15 @@
+<!-- ko if: $col.getLabel($row()) == 'Fail' -->
+<div class="data-grid-cell-content"
+     data-bind="css:'grid-severity-major'"
+     text="$col.getLabel($row())"></div>
+<!-- /ko -->
+<!-- ko if: $col.getLabel($row()) == 'Pending' -->
+<div class="data-grid-cell-content"
+     data-bind="css:'grid-severity-pending'"
+     text="$col.getLabel($row())"></div>
+<!-- /ko -->
+<!-- ko if: $col.getLabel($row()) == 'Done' -->
+<div class="data-grid-cell-content"
+     data-bind="css:'grid-severity-notice'"
+     text="$col.getLabel($row())"></div>
+<!-- /ko -->

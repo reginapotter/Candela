@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Candela Technology, LLC. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Candela_Acumatica::acumatica"
+             title="Acumatica"
+             translate="title"
+             module="Candela_Acumatica"
+             sortOrder="700"
+             parent="Magento_Backend::system"
+             resource="Candela_Acumatica::acumatica"/>
+        <add id="Candela_Acumatica::system_integrations"
+             title="Publish Queue"
+             translate="title"
+             module="Candela_Acumatica"
+             sortOrder="10"
+             parent="Candela_Acumatica::acumatica"
+             action="acumatica/publish/queue"
+             resource="Candela_Acumatica::publish_queue"/>
+    </menu>
+</config>

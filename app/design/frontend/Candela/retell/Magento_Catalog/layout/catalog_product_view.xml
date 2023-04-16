@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!--   Display Custom Stock Status     -->
+        <container name="custom.sku.status" htmlTag="div" htmlClass="product-custom-stock-status">
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.custom.stock" template="Magento_Catalog::product/view/custom_stock.phtml"/>
+        </container>
+        <move element="custom.sku.status" destination="product.info.price" after="product.info.stock.sku"/>
+    </body>
+</page>

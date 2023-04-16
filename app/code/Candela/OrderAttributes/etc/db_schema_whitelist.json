@@ -1,0 +1,42 @@
+{
+    "sales_order": {
+        "column": {
+            "candela_question": true,
+            "candela_options": true,
+            "candela_question_two": true,
+            "candela_options_two": true,
+            "candela_question_three": true,
+            "candela_options_three": true
+        }
+    },
+    "quote": {
+        "column": {
+            "candela_question": true,
+            "candela_options": true,
+            "candela_question_two": true,
+            "candela_options_two": true,
+            "candela_question_three": true,
+            "candela_options_three": true
+        }
+    },
+    "sales_creditmemo": {
+        "column": {
+            "candela_question": true,
+            "candela_options": true,
+            "candela_question_two": true,
+            "candela_options_two": true,
+            "candela_question_three": true,
+            "candela_options_three": true
+        }
+    },
+    "sales_invoice": {
+        "column": {
+            "candela_question": true,
+            "candela_options": true,
+            "candela_question_two": true,
+            "candela_options_two": true,
+            "candela_question_three": true,
+            "candela_options_three": true
+        }
+    }
+}

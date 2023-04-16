@@ -1,0 +1,40 @@
+<?php
+/**
+ *
+ */
+
+use Magento\Backend\Block\Template;
+use Candela\OrderAttributes\ViewModel\Sales\Adminhtml\Order\OrderAttributes;
+
+/** @var Template $block */
+/** @var OrderAttributes $viewModel */
+
+$viewModel = $block->getData('order_attributes_view_model');
+?>
+
+<?php if ($block->escapeHtml($viewModel->orderHasCustomAnswers())) : ?>
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Order Attributes')) ?></span>
+    </div>
+    <table class="admin__table-secondary credit-memo-attributes">
+        <?php if ($block->escapeHtml($viewModel->getAnswerFromFirstQuestion())) : ?>
+            <tr>
+                <th><?= $block->escapeHtml($viewModel->getFirstQuestion()) ?></th>
+                <td><?= $block->escapeHtml($viewModel->getAnswerFromFirstQuestion()) ?></td>
+            </tr>
+        <?php endif;?>
+        <?php if ($block->escapeHtml($viewModel->getSecondQuestion())) : ?>
+            <tr>
+                <th><?= $block->escapeHtml($viewModel->getSecondQuestion()) ?></th>
+                <td><?= $block->escapeHtml($viewModel->getAnswerFromSecondQuestion()) ?></td>
+            </tr>
+        <?php endif;?>
+        <?php if ($block->escapeHtml($viewModel->getThirdQuestion())) : ?>
+            <tr>
+                <th><?= $block->escapeHtml($viewModel->getThirdQuestion()) ?></th>
+                <td><?= $block->escapeHtml($viewModel->getAnswerFromThirdQuestion()) ?></td>
+            </tr>
+        <?php endif;?>
+    </table>
+<?php endif;?>
+
