@@ -21,7 +21,6 @@
     "require": {
         "amasty/email-unsubscribe": "^1.0",
         "cweagans/composer-patches": "^1.7",
-        "firebear/importexport": "^3.8",
         "klevu/module-categorynavigation": "^2.8",
         "klevu/module-search": "^3.2",
         "livechat/module-magento-livechat": "^2.4",
